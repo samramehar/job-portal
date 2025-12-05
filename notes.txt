@@ -1,0 +1,217 @@
+
+
+
+
+Recruiters: 
+samrah@gmail.com   samrah123
+aniqa@gmail.com    aniqa123 
+nimra@gmail.com    nimra123
+usman@gmail.com    usman123 
+bilal@gmail.com    bilal123
+
+Students: 
+hania@gmail.com    hania123 
+hadi@gmail.com     hadi123 
+ali@gmail.com      ali123 
+maria@gmail.com    maria123 
+sana@gmail.com     sana123 
+
+
+
+
+
+          -- USER APIs --
+
+for user register: 
+http://localhost:8000/api/v1/user/register  
+method: post
+body: 
+{
+    "fullname": "Hania",
+    "email": "hania@gmail.com",
+    "phoneNumber": "03106756453",
+    "password": "hania12345",
+    "role": "student"
+}
+
+for user login: 
+http://localhost:8000/api/v1/user/login 
+method: post
+body: 
+{
+    "email": "samrah@gmail.com",
+    "password": "samrah12345",
+    "role": "recruiter"
+}
+
+for user update: -- here we dont use id for security, only logged in user can be updated at this endpoint
+http://localhost:8000/api/v1/user/profile/update
+method: post
+body: 
+{
+    "fullName": "Samrah Mehar Ali"
+}
+
+for user logout: 
+http://localhost:8000/api/v1/user/profile/update
+method: post
+body: 
+{
+    "fullname": "Aniqa Shafique"
+}
+
+for user logout: 
+http://localhost:8000/api/v1/user/logout
+method: get
+body: 
+{
+    "email": "aniqa@gmail.com"
+}
+
+
+          -- COMPANY APIs --
+to register company: 
+first login
+http://localhost:8000/api/v1/company/register
+method: post 
+body: 
+{
+    "companyName" : "MERN Stack PVT Ltd"
+}
+
+
+
+          -- JOB APIs --
+
+
+          -- APPLICATION APIs --
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[
+  {
+    "fullname": "Samrah Mehar",
+    "email": "samrah@gmail.com",
+    "phoneNumber": "03106756453",
+    "password": "hashed_password",
+    "role": "jobseeker",
+    "profile": { "bio": "Frontend developer eager to work on modern apps.", "skills": ["React", "JavaScript", "CSS"], "profilePhoto": "https://randomuser.me/api/portraits/women/1.jpg" }
+  },
+  {
+    "fullname": "Hania Khan",
+    "email": "hania@gmail.com",
+    "phoneNumber": "03004561234",
+    "password": "hashed_password",
+    "role": "jobseeker",
+    "profile": { "bio": "Backend developer with Node.js experience.", "skills": ["Node.js", "Express", "MongoDB"], "profilePhoto": "https://randomuser.me/api/portraits/women/2.jpg" }
+  },
+  {
+    "fullname": "Aniqa Malik",
+    "email": "aniqa@gmail.com",
+    "phoneNumber": "03211478523",
+    "password": "hashed_password",
+    "role": "jobseeker",
+    "profile": { "bio": "Fullstack MERN developer.", "skills": ["React", "Node.js", "MongoDB"], "profilePhoto": "https://randomuser.me/api/portraits/women/3.jpg" }
+  },
+  {
+    "fullname": "Ali Raza",
+    "email": "ali.raza@gmail.com",
+    "phoneNumber": "03211223344",
+    "password": "hashed_password",
+    "role": "recruiter",
+    "profile": { "bio": "HR Manager at TechSpark.", "skills": ["Recruitment", "Management"], "profilePhoto": "https://randomuser.me/api/portraits/men/1.jpg" }
+  },
+  {
+    "fullname": "Ahmed Hassan",
+    "email": "ahmed.hassan@gmail.com",
+    "phoneNumber": "03334561234",
+    "password": "hashed_password",
+    "role": "jobseeker",
+    "profile": { "bio": "Python developer with ML experience.", "skills": ["Python", "Machine Learning"], "profilePhoto": "https://randomuser.me/api/portraits/men/2.jpg" }
+  },
+  {
+    "fullname": "Sana Javed",
+    "email": "sana.javed@gmail.com",
+    "phoneNumber": "03451239876",
+    "password": "hashed_password",
+    "role": "jobseeker",
+    "profile": { "bio": "UI/UX Designer creating intuitive interfaces.", "skills": ["Figma", "UI/UX"], "profilePhoto": "https://randomuser.me/api/portraits/women/4.jpg" }
+  },
+  {
+    "fullname": "Bilal Ahmed",
+    "email": "bilal.ahmed@gmail.com",
+    "phoneNumber": "03021234567",
+    "password": "hashed_password",
+    "role": "jobseeker",
+    "profile": { "bio": "DevOps engineer specializing in AWS.", "skills": ["AWS", "Docker", "Kubernetes"], "profilePhoto": "https://randomuser.me/api/portraits/men/3.jpg" }
+  },
+  {
+    "fullname": "Maria Ali",
+    "email": "maria.ali@gmail.com",
+    "phoneNumber": "03125478596",
+    "password": "hashed_password",
+    "role": "jobseeker",
+    "profile": { "bio": "Data Scientist with strong statistics background.", "skills": ["Python", "R", "Pandas"], "profilePhoto": "https://randomuser.me/api/portraits/women/5.jpg" }
+  },
+  {
+    "fullname": "Usman Tariq",
+    "email": "usman.tariq@gmail.com",
+    "phoneNumber": "03319876543",
+    "password": "hashed_password",
+    "role": "recruiter",
+    "profile": { "bio": "Talent acquisition specialist at CodeCraft.", "skills": ["Hiring", "Screening"], "profilePhoto": "https://randomuser.me/api/portraits/men/4.jpg" }
+  },
+  {
+    "fullname": "Nimra Shah",
+    "email": "nimra.shah@gmail.com",
+    "phoneNumber": "03458961234",
+    "password": "hashed_password",
+    "role": "jobseeker",
+    "profile": { "bio": "QA Engineer ensuring product quality.", "skills": ["Selenium", "Cypress"], "profilePhoto": "https://randomuser.me/api/portraits/women/6.jpg" }
+  }
+]
+
+
+
+
+[
+  { "name": "TechSpark Solutions", "description": "Software company building apps.", "website": "https://techspark.com", "location": "Lahore", "logo": "https://logo.clearbit.com/google.com" },
+  { "name": "DataVision Analytics", "description": "AI-driven solutions.", "website": "https://datavision.com", "location": "Karachi", "logo": "https://logo.clearbit.com/microsoft.com" },
+  { "name": "CodeCraft Ltd", "description": "Crafting high-quality software.", "website": "https://codecraft.com", "location": "Islamabad", "logo": "https://logo.clearbit.com/github.com" },
+  { "name": "CloudNova", "description": "Cloud infrastructure specialists.", "website": "https://cloudnova.com", "location": "Multan", "logo": "https://logo.clearbit.com/aws.com" },
+  { "name": "Designify", "description": "UI/UX design studio.", "website": "https://designify.com", "location": "Lahore", "logo": "https://logo.clearbit.com/figma.com" },
+  { "name": "InnoTech Systems", "description": "Innovative IT services.", "website": "https://innotech.com", "location": "Karachi", "logo": "https://logo.clearbit.com/ibm.com" },
+  { "name": "AI Dynamics", "description": "AI & ML research lab.", "website": "https://aidynamics.com", "location": "Islamabad", "logo": "https://logo.clearbit.com/openai.com" },
+  { "name": "WebWorks", "description": "Custom websites & web apps.", "website": "https://webworks.com", "location": "Lahore", "logo": "https://logo.clearbit.com/vercel.com" },
+  { "name": "AppGenie", "description": "Mobile app development company.", "website": "https://appgenie.com", "location": "Karachi", "logo": "https://logo.clearbit.com/apple.com" },
+  { "name": "SecureTech", "description": "Cybersecurity solutions.", "website": "https://securetech.com", "location": "Islamabad", "logo": "https://logo.clearbit.com/kaspersky.com" }
+]
+
+
+
+
+[
+  { "title": "Frontend Developer", "description": "Build responsive UIs with React.", "requirements": ["React", "Tailwind", "JavaScript"], "salary": "60k - 100k", "location": "Lahore", "jobType": "Full-time" },
+  { "title": "Backend Developer", "description": "Develop APIs using Node.js.", "requirements": ["Node.js", "Express", "MongoDB"], "salary": "70k - 120k", "location": "Karachi", "jobType": "Remote" },
+  { "title": "Data Scientist", "description": "Analyze data & build ML models.", "requirements": ["Python", "Pandas", "ML"], "salary": "100k - 180k", "location": "Islamabad", "jobType": "Full-time" },
+  { "title": "Fullstack Developer", "description": "Work across frontend and backend.", "requirements": ["React", "Node.js", "MongoDB"], "salary": "80k - 150k", "location": "Multan", "jobType": "Hybrid" },
+  { "title": "UI/UX Designer", "description": "Design clean and user-friendly interfaces.", "requirements": ["Figma", "Adobe XD"], "salary": "50k - 90k", "location": "Lahore", "jobType": "On-site" },
+  { "title": "DevOps Engineer", "description": "Manage cloud infrastructure.", "requirements": ["AWS", "Docker", "Kubernetes"], "salary": "120k - 200k", "location": "Karachi", "jobType": "Full-time" },
+  { "title": "QA Engineer", "description": "Test applications for bugs.", "requirements": ["Selenium", "Cypress"], "salary": "60k - 80k", "location": "Islamabad", "jobType": "On-site" },
+  { "title": "Mobile App Developer", "description": "Build cross-platform apps.", "requirements": ["Flutter", "React Native"], "salary": "90k - 140k", "location": "Lahore", "jobType": "Full-time" },
+  { "title": "Cybersecurity Analyst", "description": "Ensure systems are secure.", "requirements": ["Penetration Testing", "Network Security"], "salary": "110k - 170k", "location": "Karachi", "jobType": "Remote" },
+  { "title": "AI Engineer", "description": "Work on AI-driven projects.", "requirements": ["Python", "TensorFlow", "Deep Learning"], "salary": "150k - 220k", "location": "Islamabad", "jobType": "Full-time" }
+]
