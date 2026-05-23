@@ -7,6 +7,8 @@ import userRoute from "./routes/user.route.js";
 import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
+import path from "path";
+
 
 // mongodb+srv://samramehar009_db_user:1234567890@jobportalprojectcluster.aqfprtc.mongodb.net/
 
@@ -22,6 +24,10 @@ const corsOptions = {
     origin:'http://localhost:5173',
     credentials:true
 }
+
+
+// Serve backend assets folder as static
+app.use("/assets", express.static(path.join(process.cwd(), "backend/assets")));
 
 app.use(cors(corsOptions));
 

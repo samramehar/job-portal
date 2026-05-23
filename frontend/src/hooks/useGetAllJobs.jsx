@@ -23,7 +23,7 @@ const useGetAllJobs = () => {
   };
 
   fetchAllJobs();
-}, [searchedQuery]); // 👈 now refetch whenever query changes
+}, [searchedQuery]); //  now refetch whenever query changes
 
 
 }

@@ -22,7 +22,7 @@ const Signup = () => {
     phoneNumber: "",
     password: "",
     role: "",
-    file: "",
+    profilePhoto: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const { loading, user } = useSelector((store) => store.auth);
@@ -33,7 +33,7 @@ const Signup = () => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
   const changeFileHandler = (e) => {
-    setInput({ ...input, file: e.target.files?.[0] });
+    setInput({ ...input, profilePhoto: e.target.files?.[0] });
   };
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -43,8 +43,8 @@ const Signup = () => {
     formData.append("phoneNumber", input.phoneNumber);
     formData.append("password", input.password);
     formData.append("role", input.role);
-    if (input.file) {
-      formData.append("file", input.file);
+    if (input.profilePhoto) {
+      formData.append("profilePhoto", input.profilePhoto);
     }
 
     try {
@@ -75,7 +75,7 @@ const Signup = () => {
       <Helmet>
         <title>CareerLaunch | Signup</title>
       </Helmet>
-      <Navbar />
+      <div className='mb-24'><Navbar /></div>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +95,7 @@ const Signup = () => {
               value={input.fullname}
               name="fullname"
               onChange={changeEventHandler}
-              placeholder="patel"
+              placeholder="Enter your name"
             />
           </div>
           <div className="my-2">
@@ -105,7 +105,7 @@ const Signup = () => {
               value={input.email}
               name="email"
               onChange={changeEventHandler}
-              placeholder="patel@gmail.com"
+              placeholder="yourmail@gmail.com"
             />
           </div>
           <div className="my-2">

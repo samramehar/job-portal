@@ -35,32 +35,56 @@ export const postJob = async (req, res) => {
     }
 }
 // student k liye
+// export const getAllJobs = async (req, res) => {
+//     try {
+//         const keyword = req.query.keyword || "";
+//         const query = {
+//             $or: [
+//                 { title: { $regex: keyword, $options: "i" } },
+//                 { description: { $regex: keyword, $options: "i" } },
+//             ]
+//         };
+//         const jobs = await Job.find(query).populate({
+//             path: "company"
+//         }).sort({ createdAt: -1 });
+//         if (!jobs) {
+//             return res.status(404).json({
+//                 message: "Jobs not found.",
+//                 success: false
+//             })
+//         };
+//         return res.status(200).json({
+//             jobs,
+//             success: true
+//         })
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
 export const getAllJobs = async (req, res) => {
-    try {
-        const keyword = req.query.keyword || "";
-        const query = {
-            $or: [
-                { title: { $regex: keyword, $options: "i" } },
-                { description: { $regex: keyword, $options: "i" } },
-            ]
-        };
-        const jobs = await Job.find(query).populate({
-            path: "company"
-        }).sort({ createdAt: -1 });
-        if (!jobs) {
-            return res.status(404).json({
-                message: "Jobs not found.",
-                success: false
-            })
-        };
-        return res.status(200).json({
-            jobs,
-            success: true
-        })
-    } catch (error) {
-        console.log(error);
-    }
-}
+  try {
+    const keyword = req.query.query?.trim() || "";
+
+    const jobs = await Job.find({
+      title: { $regex: keyword, $options: "i" }
+    }).populate("company");
+
+    res.status(200).json({
+      success: true,
+      jobs,
+    });
+  } catch (error) {
+    console.error("JOB SEARCH ERROR:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch jobs",
+    });
+  }
+};
+
+
+
 // student
 export const getJobById = async (req, res) => {
     try {

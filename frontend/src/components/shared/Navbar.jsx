@@ -4,18 +4,23 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { LogOut, User2 } from "lucide-react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant";
 import { setUser } from "@/redux/authSlice";
 import { toast } from "sonner";
+import defaultAvatar from "@/assets/avatar.jpg";
+
 
 const Navbar = () => {
   const [confirmLogout, setConfirmLogout] = useState(false);
   const { user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const isHome = location.pathname === "/";
 
   const logoutHandler = async () => {
     try {
@@ -33,22 +38,29 @@ const Navbar = () => {
     }
   };
 
-  const navLinkClasses = ({ isActive }) =>
-    isActive
-      ? "relative after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-blue-600"
-      : "hover:font-bold";
+  const navLinkClasses = ({ isActive }) => {
+    const baseColor = isHome ? "text-white" : "text-gray-900";
+    return isActive
+      ? `relative after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-blue-600 ${baseColor}`
+      : `hover:font-bold ${baseColor}`;
+  };
 
   return (
-    <div className="bg-white p-3 w-[90%] mx-auto">
+    <div
+      className={`bg-transparent p-3 w-full mx-auto absolute z-30 top-0 left-0`}
+    >
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-            <Briefcase className="w-5 h-5 text-white " />
+          <div
+            className={`w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center rounded-lg`}
+          >
+            <Briefcase className={`w-5 h-5 ${isHome ? "text-white" : "text-white"}`} />
           </div>
-          <span className="text-xl font-semibold text-gray-900">
+          <span className={`text-xl font-semibold ${isHome ? "text-white" : "text-gray-900"}`}>
             CareerLaunch
           </span>
         </div>
+
         <div className="flex items-center gap-12">
           <ul className="flex font-medium items-center gap-5">
             {user && user.role === "recruiter" ? (
@@ -76,26 +88,32 @@ const Navbar = () => {
                     Filter Jobs
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="/browse" className={navLinkClasses}>
-                    Explore All Jobs
-                  </NavLink>
-                </li>
+                {/* Replaced Explore All Jobs with Saved Jobs for students */}
+                {user?.role === "student" && (
+                  <li>
+                    <NavLink to="/saved-jobs" className={navLinkClasses}>
+                      Saved Jobs
+                    </NavLink>
+                  </li>
+                )}
               </>
             )}
           </ul>
+
           {!user ? (
             <div className="flex items-center gap-2">
               <Link to="/login">
                 <Button
                   variant="outline"
-                  className="hover:from-blue-700 hover:to-purple-700 hover:text-white"
+                  className={`hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md hover:text-gray-900 ${isHome ? "text-gray-900 bg-white" : ""}`}
                 >
                   Login
                 </Button>
               </Link>
               <Link to="/signup">
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md">
+                <Button
+                  className={`bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-sm hover:shadow-md`}
+                >
                   Signup
                 </Button>
               </Link>
@@ -104,20 +122,14 @@ const Navbar = () => {
             <Popover>
               <PopoverTrigger asChild>
                 <Avatar className="cursor-pointer">
-                  <AvatarImage
-                    src={user?.profile?.profilePhoto}
-                    alt="@shadcn"
-                  />
+                      <AvatarImage src={user?.profile?.profilePhoto || defaultAvatar}/>    
                 </Avatar>
               </PopoverTrigger>
               <PopoverContent className="w-80">
-                <div className="">
+                <div>
                   <div className="flex gap-2 space-y-2">
                     <Avatar className="cursor-pointer">
-                      <AvatarImage
-                        src={user?.profile?.profilePhoto}
-                        alt="@shadcn"
-                      />
+                      <AvatarImage src={user?.profile?.profilePhoto || defaultAvatar}/>    
                     </Avatar>
                     <div>
                       <h4 className="font-medium">{user?.fullname}</h4>
@@ -126,11 +138,11 @@ const Navbar = () => {
                       </p>
                     </div>
                   </div>
+
                   <div className="flex flex-col my-2 text-gray-600">
                     <div className="flex w-fit items-center gap-2 cursor-pointer">
                       <User2 />
                       <Button variant="link">
-                        {" "}
                         <Link to="/profile">View Profile</Link>
                       </Button>
                     </div>

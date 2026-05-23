@@ -13,6 +13,8 @@ import { Helmet } from "react-helmet-async";
 import AdminJobsTable from "./admin/AdminJobsTable";
 import ApplicantsTable from "./admin/ApplicantsTable";
 import CompaniesTable from "./admin/CompaniesTable";
+import defaultAvatar from "../assets/avatar.jpg";
+
 
 const Profile = () => {
   useGetAppliedJobs();
@@ -23,14 +25,14 @@ const Profile = () => {
 
   return (
     <div>
-      <Navbar />
+      <div className='mb-24'><Navbar /></div>
 
       {/* Profile Header (common) */}
       <div className="max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-5 p-8">
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
-            <Avatar className="h-24 w-24">
-              <AvatarImage src={user?.profile?.profilePhoto} alt="profile" />
+            <Avatar className="cursor-pointer">
+              <AvatarImage src={user?.profile?.profilePhoto || defaultAvatar}/>    
             </Avatar>
             <div>
               <h1 className="font-medium text-xl">{user?.fullname}</h1>
@@ -112,7 +114,7 @@ const Profile = () => {
       {user.role === "recruiter" && (
         <div className="max-w-4xl mx-auto bg-white rounded-2xl mb-40">
           <h1 className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent text-lg my-5">
-            Companies
+            Registered Companies
           </h1>
           <CompaniesTable />
 
@@ -121,10 +123,6 @@ const Profile = () => {
           </h1>
           <AdminJobsTable />
 
-          <h1 className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent text-lg my-5">
-            Applicants
-          </h1>
-          <ApplicantsTable />
         </div>
       )}
 

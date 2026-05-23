@@ -36,13 +36,13 @@ const CompanyCreate = () => {
     return (
         <div>
             <Helmet>
-                    <title>CareerLaunch | Company Registeration</title>
+                    <title>CareerLaunch | Company Registration</title>
             </Helmet>
-            <Navbar />
+            <div className='mb-24'><Navbar /></div>
             <div className='max-w-4xl mx-auto'>
                 <div className='my-10'>
-                    <h1 className='font-bold text-2xl'>Your Company Name</h1>
-                    <p className='text-gray-500'>What would you like to give your company name? you can change this later.</p>
+                    <h1 className='font-bold text-2xl'>Name Your Company</h1>
+                    <p className='text-gray-500'>How would you like to name your company? you can change this later.</p>
                 </div>
 
                 <Label>Company Name</Label>
@@ -54,7 +54,7 @@ const CompanyCreate = () => {
                 />
                 <div className='flex items-center gap-2 my-10'>
                     <Button variant="outline" onClick={() => navigate("/admin/companies")}>Cancel</Button>
-                    <Button onClick={registerNewCompany}>Continue</Button>
+                    <Button onClick={registerNewCompany}>Create</Button>
                 </div>
             </div>
         </div>
