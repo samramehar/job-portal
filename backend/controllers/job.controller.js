@@ -34,6 +34,36 @@ export const postJob = async (req, res) => {
         return res.status(500).json({ message: "Internal server error", error: error.message, success: false });
     }
 }
+<<<<<<< HEAD
+=======
+// student k liye
+// export const getAllJobs = async (req, res) => {
+//     try {
+//         const keyword = req.query.keyword || "";
+//         const query = {
+//             $or: [
+//                 { title: { $regex: keyword, $options: "i" } },
+//                 { description: { $regex: keyword, $options: "i" } },
+//             ]
+//         };
+//         const jobs = await Job.find(query).populate({
+//             path: "company"
+//         }).sort({ createdAt: -1 });
+//         if (!jobs) {
+//             return res.status(404).json({
+//                 message: "Jobs not found.",
+//                 success: false
+//             })
+//         };
+//         return res.status(200).json({
+//             jobs,
+//             success: true
+//         })
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+>>>>>>> 9b6dc7d1ab847e124354572d203200080a7b08c5
 
 export const getAllJobs = async (req, res) => {
   try {

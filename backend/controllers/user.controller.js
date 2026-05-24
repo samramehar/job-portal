@@ -77,6 +77,11 @@ export const register = async (req, res) => {
 };
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9b6dc7d1ab847e124354572d203200080a7b08c5
 export const login = async (req, res) => {
     try {
         const { email, password, role } = req.body;
