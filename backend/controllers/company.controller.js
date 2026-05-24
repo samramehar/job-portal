@@ -75,11 +75,12 @@ export const updateCompany = async (req, res) => {
     const updateData = { name, description, website, location };
 
     // Only handle logo upload if file exists
-    if (req.file) {
-      const fileUri = getDataUri(req.file);
+    if (req.files?.logo?.[0]) {
+      const fileUri = getDataUri(req.files.logo[0]);
       const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
       updateData.logo = cloudResponse.secure_url;
     }
+
 
     const company = await Company.findByIdAndUpdate(req.params.id, updateData, { new: true });
 

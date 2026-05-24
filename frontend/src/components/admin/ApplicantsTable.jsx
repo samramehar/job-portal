@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { APPLICATION_API_END_POINT } from '@/utils/constant';
 import axios from 'axios';
 import { Helmet } from "react-helmet-async";
+import { Link } from 'react-router-dom';
 
 
 const shortlistingStatus = ["Accepted", "Rejected"];
@@ -49,7 +50,13 @@ const ApplicantsTable = () => {
                     {
                         applicants && applicants?.applications?.map((item) => (
                             <tr key={item._id}>
-                                <TableCell>{item?.applicant?.fullname}</TableCell>
+                                <TableCell>
+                                <Link to={`/admin/applicant/${item?.applicant?._id}?applicationId=${item._id}`} 
+                                className="text-blue-600 hover:underline">
+                                    {item?.applicant?.fullname}
+                                </Link>
+
+                                </TableCell>
                                 <TableCell>{item?.applicant?.email}</TableCell>
                                 <TableCell>{item?.applicant?.phoneNumber}</TableCell>
                                 <TableCell >

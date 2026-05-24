@@ -18,11 +18,20 @@ const userSchema = new mongoose.Schema({
         type: String,
         required:true,
     },
+    resetPasswordToken: { 
+        type: String 
+    },
+    resetPasswordExpires: { 
+        type: Date 
+    },
     role:{
         type: String,
         enum: ['student','recruiter'],
         required:true
     },
+    savedJobs: [{ 
+            type: mongoose.Schema.Types.ObjectId, ref: "Job" 
+        }],
     profile:{
         bio: {type:String},
         skills: [{type:String}],

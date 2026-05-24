@@ -23,13 +23,13 @@ const Applicants = () => {
             }
         }
         fetchAllApplicants();
-    }, []);
+    }, [params.id]);
     return (
         <div>
             <Helmet>
                     <title>CareerLaunch | Applicants</title>
             </Helmet>
-            <Navbar />
+            <div className='mb-24'><Navbar /></div>
             <div className='max-w-7xl mx-auto'>
                 <h1 className='font-bold text-xl my-5'>Applicants {applicants?.applications?.length}</h1>
                 <ApplicantsTable />

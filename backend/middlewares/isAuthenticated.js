@@ -5,7 +5,7 @@ const isAuthenticated = async (req, res, next) => {
         const token = req.cookies.token;
         if (!token) {
             return res.status(401).json({
-                message: "You need to signup or login to apply for a job.",
+                message: "Please signup or login first.",
                 success: false,
             })
         }

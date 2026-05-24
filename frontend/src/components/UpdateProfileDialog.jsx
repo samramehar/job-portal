@@ -21,7 +21,8 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     bio: user?.profile?.bio || "",
     skills: user?.profile?.skills?.join(", ") || "",
     position: user?.profile?.position || "",
-    file: null
+    profilePhoto: null,
+    resume: null
   });
 
   const dispatch = useDispatch();
@@ -29,12 +30,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-
-  const fileChangeHandler = (e) => {
-    const file = e.target.files?.[0];
-    setInput({ ...input, file });
-  };
-
+  
   const submitHandler = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -45,12 +41,16 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     if (user.role === "student") {
       formData.append("bio", input.bio);
       formData.append("skills", input.skills);
-      if (input.file) formData.append("file", input.file);
+      if (input.resume) formData.append("resume", input.resume);
     }
 
+    // For recruiter
     if (user.role === "recruiter") {
       formData.append("position", input.position);
     }
+
+    // Append profile photo if exists
+    if (input.profilePhoto) formData.append("profilePhoto", input.profilePhoto);
 
     try {
       setLoading(true);
@@ -138,17 +138,23 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                     className="col-span-3"
                   />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="file" className="text-right">Resume</Label>
-                  <Input
-                    id="file"
-                    name="file"
-                    type="file"
-                    accept="application/pdf"
-                    onChange={fileChangeHandler}
-                    className="col-span-3"
-                  />
-                </div>
+
+                {/* Resume (students only) */}
+                {user.role === "student" && (
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="resume" className="text-right">Resume</Label>
+                    <Input
+                      id="resume"
+                      name="resume"
+                      type="file"
+                      accept="application/pdf"
+                      onChange={(e) =>
+                        setInput({ ...input, resume: e.target.files[0] })
+                      }
+                      className="col-span-3"
+                    />
+                  </div>
+                )}
               </>
             )}
 
@@ -165,6 +171,22 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                 />
               </div>
             )}
+
+            {/* Profile Photo (for everyone) */}
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="profilePhoto" className="text-right">Photo</Label>
+                  <Input
+                    id="profilePhoto"
+                    name="profilePhoto"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) =>
+                      setInput({ ...input, profilePhoto: e.target.files[0] })
+                    }
+                    className="col-span-3"
+                  />
+                </div>
+
           </div>
 
           <DialogFooter>

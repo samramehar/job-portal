@@ -17,7 +17,7 @@ const Footer = () => {
                             <h3 className='text-2xl font-bold text-gray-800'>CareerLaunch</h3>
                         </div>
                         <p className={`text-sm text-gray-600 max-w-md mx-auto `}>
-                            Connecting to talented professionls with innovative companies worldwide. Your career cuccess is our mission.
+                            Connecting to talented professionls with innovative companies worldwide. Your career success is our mission.
                         </p>
                     </div>
                     {/* copyright */}

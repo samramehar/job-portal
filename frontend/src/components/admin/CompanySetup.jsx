@@ -43,7 +43,7 @@ const CompanySetup = () => {
         formData.append("website", input.website);
         formData.append("location", input.location);
         if (input.file) {
-            formData.append("file", input.file);
+            formData.append("logo", input.file);
         }
         try {
             setLoading(true);
@@ -80,7 +80,7 @@ const CompanySetup = () => {
             <Helmet>
                     <title>CareerLaunch | Company Setup</title>
             </Helmet>
-            <Navbar />
+            <div className='mb-24'><Navbar /></div>
             <div className='max-w-xl mx-auto my-10'>
                 <form onSubmit={submitHandler}>
                     <div className='flex items-center gap-5 p-8'>

@@ -12,7 +12,8 @@ const AdminCompanyDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [company, setCompany] = useState(null);
-
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  
   const fetchCompany = async () => {
     try {
       const res = await axios.get(`${COMPANY_API_END_POINT}/get/${id}`, {
@@ -28,8 +29,6 @@ const AdminCompanyDetails = () => {
   };
 
   const handleDelete = async () => {
-    if (!window.confirm("Are you sure you want to delete this company?"))
-      return;
     try {
       const res = await axios.delete(`${COMPANY_API_END_POINT}/delete/${id}`, {
         withCredentials: true,
@@ -42,6 +41,10 @@ const AdminCompanyDetails = () => {
       console.log(error);
       toast.error("Failed to delete company");
     }
+  };
+
+  const handleCancel = () => {
+  setIsPopoverOpen(false); // close the popover
   };
 
   useEffect(() => {
@@ -75,30 +78,31 @@ const AdminCompanyDetails = () => {
             Edit
           </Button>
           <Popover>
-            <PopoverTrigger asChild>
-              <Button className="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-2 rounded-lg font-medium hover:from-red-700 hover:to-red-900 transition-all duration-300 shadow-sm hover:shadow-md">
-                Delete
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-full bg-white shadow-lg rounded-xl border border-gray-200">
-              <p className="text-center font-medium text-gray-700 mb-3">
-                 Are you sure you want to delete this company?
-              </p>
-              <div className="flex justify-center gap-3">
-                <Button
-                  onClick={handleDelete}
-                  className="bg-gradient-to-r from-red-500 to-pink-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:from-red-600 hover:to-pink-700 transition-all duration-300"
-                >
-                  Yes, Delete
-                </Button>
-                <Button
-                  variant="outline"
-                  className="border-gray-300 text-gray-600 font-medium hover:bg-gray-100 transition-all duration-300"
-                >
-                  Cancel
-                </Button>
-              </div>
-            </PopoverContent>
+            <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
+                          <PopoverTrigger asChild>
+                            <Button className="bg-gradient-to-r from-red-600 to-red-800 text-white px-6 py-2 rounded-lg font-medium hover:from-red-700 hover:to-red-900 transition-all duration-300 shadow-sm hover:shadow-md">Delete</Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-full bg-white shadow-lg rounded-xl border border-gray-200">
+                            <p className="text-center font-medium text-gray-700 mb-3">
+                              Are you sure you want to delete this job?
+                            </p>
+                            <div className="flex justify-center gap-3">
+                              <Button
+                                onClick={() => { handleDelete(); setIsPopoverOpen(false); }}
+                                className="bg-gradient-to-r from-red-500 to-pink-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:from-red-600 hover:to-pink-700 transition-all duration-300"
+                              >
+                                Yes, Delete
+                              </Button>
+                              <Button
+                                variant="outline"
+                                className="border-gray-300 text-gray-600 font-medium hover:bg-gray-100 transition-all duration-300"
+                                onClick={handleCancel}
+                              >
+                                Cancel
+                              </Button>
+                            </div>
+                          </PopoverContent>
+                        </Popover>
           </Popover>
         </div>
       </div>

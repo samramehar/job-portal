@@ -23,7 +23,7 @@ const AdminJobs = () => {
       <Helmet>
               <title>CareerLaunch | Admin Jobs</title>
       </Helmet>
-      <Navbar />
+      <div className='mb-24'><Navbar /></div>
       <div className='max-w-6xl mx-auto my-10'>
         <div className='flex items-center justify-between my-5'>
           <Input

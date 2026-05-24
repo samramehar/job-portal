@@ -63,7 +63,7 @@ const Login = () => {
       <Helmet>
         <title>CareerLaunch | Login</title>
       </Helmet>
-      <Navbar />
+      <div className='mb-24'><Navbar /></div>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ const Login = () => {
               value={input.email}
               name="email"
               onChange={changeEventHandler}
-              placeholder="patel@gmail.com"
+              placeholder="yourmail@gmail.com"
             />
           </div>
 
@@ -142,10 +142,14 @@ const Login = () => {
           )}
           <span className="text-sm">
             Don't have an account?{" "}
-            <Link to="/signup" className="text-blue-600">
+            <Link to="/signup" className="text-blue-600 mr-72">
               Signup
             </Link>
+              <Link to="/forgot-password" className="text-blue-600 text-sm hover:underline">
+                Forgot Password?
+              </Link>
           </span>
+
         </form>
       </motion.div>
     </div>

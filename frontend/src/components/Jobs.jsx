@@ -12,7 +12,7 @@ const Jobs = () => {
 
   useEffect(() => {
     if (searchedQuery) {
-      // ✅ Case 1: searchedQuery is an array (from checkboxes)
+      //  Case 1: searchedQuery is an array (from checkboxes)
       if (Array.isArray(searchedQuery) && searchedQuery.length > 0) {
         const normalizedQueries = searchedQuery.map((q) =>
           q.toLowerCase().replace(/\s+/g, "")
@@ -39,7 +39,7 @@ const Jobs = () => {
         setFilteredJobs(filtered);
       }
 
-      // ✅ Case 2: searchedQuery is a string (search bar / carousel)
+      //  Case 2: searchedQuery is a string (search bar / carousel)
       else if (typeof searchedQuery === "string" && searchedQuery.trim() !== "") {
         const normalizedQuery = searchedQuery.toLowerCase().replace(/\s+/g, "");
 
@@ -74,7 +74,7 @@ const Jobs = () => {
       <Helmet>
         <title>CareerLaunch | Jobs</title>
       </Helmet>
-      <Navbar />
+      <div className='mb-24'><Navbar /></div>
       <div className="max-w-7xl mx-auto mt-5 my-10">
         <div className="flex gap-5">
           <div className="w-20%">
